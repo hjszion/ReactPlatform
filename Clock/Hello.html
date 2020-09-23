@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Clock</title>
+</head>
+<body>
+<div id="app">
+</div>
+<div id="time">
+</div>
+<div id="hello">
+</div>
+<script type="text/babel">
+    setInterval(function(){document.getElementById('time').innerHTML = new Date().toString();}, 1000);
+    const myButton = React.createElement('button', null, 'click me!')
+    const myClock = React.createElement('clock', null, 'what?')
+    const myHello = React.createElement('clock', null, 'Hello')
+    // const Title = (props) => {
+    //     const { text } = props; // A little bit of destructuring
+    //     return React.createElement('h1', null, text);
+    // }
+    // const App = (props) => {
+    //     return React.createElement(Title, { text: 'Dynamic content! Hooray!' } );
+    // }
+    const Title = (props) => {
+        const { text } = props;
+        return React.createElement('h1', null, text);
+    }
+    const App = (props) => {
+        return React.createElement('div', null,
+            React.createElement(Title, { text: 'Title one!' } ),
+            React.createElement(Title, { text: 'Title two!!' } ),
+            React.createElement(Title, { text: 'Title three!!!' } )
+        )
+    }
+    // ReactDOM.render(
+    //     <h1>Hello, world! aicoder.com </h1>,
+    //     document.getElementById('app')
+    // );
+    ReactDOM.render(App(), document.getElementById('app'));
+    ReactDOM.render(myClock, document.getElementById('time'));
+    ReactDOM.render(myHello, document.getElementById('hello'));
+</script>
+</body>
+</html>
+
+
+

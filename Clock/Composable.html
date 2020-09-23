@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Color</title>
+</head>
+<body>
+<div id="app">
+</div>
+<div id="color">
+</div>
+<script type="text/babel">
+    const Title = (props) => {
+        const { text } = props;
+        return React.createElement('h1', null, text);
+    }
+    const App = (props) => {
+        return React.createElement('div', null,
+            React.createElement(Title, { text: 'Title one!' } ),
+            React.createElement(Title, { text: 'Title two!!' } ),
+            React.createElement(Title, { text: 'Title three!!!' } )
+        )
+    }
+    ReactDOM.render(App(), document.getElementById('app'));
+
+    // colors
+    const color = (props) => {
+        const {cur_color, color} = props;
+        return React.createElement("div", {style:{backgroundColor: color, color: "white", height:300, width: 300}}, cur_color);
+    }
+    const colors = (props) => {
+        return React.createElement("div", null,
+            React.createElement(color, {cur_color: "is_blue", color: "blue"}),
+            React.createElement(color, {cur_color: "is_red", color: "red"}),
+            React.createElement(color, {cur_color: "is_yellow", color: "pink"})
+        )
+    }
+
+    ReactDOM.render(colors(), document.getElementById("color"));
+</script>
+</body>
+</html>
+
