@@ -5,7 +5,7 @@
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <title>Color</title>
+    <title>Checker</title>
 </head>
 <body>
 <div id="app">
@@ -13,53 +13,35 @@
 <div id="checker">
 </div>
 <script type="text/babel">
-    function CheckerBoard(props){
+    const Board = (props) => {
         const{row, col, color1, color2} = props;
         var board = new Array();
-        for(i=0, i<row; i++;){
-            board.push(Row(props));
+        for(var i=0; i<row; i++){
+            board.push(Row(props, i));
         }
+        return React.createElement("div", {style:{display: "block", height:"auto", width:"auto"}}, ...board);
     }
-    function Row(props){
+    const Row = (props, row_cnt) => {
         const{row, col, color1, color2} = props;
-        var row = new Array();
-        var cnt = 0
-        for(j=0;i<col;j++){
-            if(cnt%2 == 0){
-                row.push(Cell({color: color1}));
+        var cur_row = [];
+        var cnt = 0;
+        for(var j=0;j<col;j++){
+            if((cnt%2===0 && row_cnt%2===0) || (cnt%2!==0 && row_cnt%2!==0)){
+                cur_row.push(Cell({color: color1}));
             }else{
-                row.push(Cell({color: color2}));
+                cur_row.push(Cell({color: color2}));
             }
+            cnt += 1;
         }
+        return React.createElement("div", {style:{display: "block", height:"auto", width:"auto"}}, ...cur_row);
     }
-    function Cell(props){
-        
-    }
-
-    var styles = {
-        row: {height: '20px'},
-        cell: {height: '20px', width: '20px', display:'inline-block'},
-        colorA: {backgroundColor: 'black'},
-        colorB: {backgroundColor: 'red'}
-    }
-
-    // components
     const Cell = (props) => {
         const{color} = props;
         return React.createElement("div", {style:{backgroundColor: color, height: 30, width:30, display: "inline-block"}})
     }
 
-    const Row = (props) => {
-        const{row, col, color1, color2} = props;
-        var counter = 0;
-        return React.createElement(Cell, )
-    }
-    const Board = (props) => {
-        const{row, col, color1, color2} = props;
-        return React.createElement("div", null, ...CheckerBoard(props));
-    }
-
     ReactDOM.render(Board({row:9, col:9, color1:"red", color2:"blue"}), document.getElementById("checker"));
+
 </script>
 </body>
 </html>
