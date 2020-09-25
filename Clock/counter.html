@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Counter</title>
+</head>
+<body>
+<div id="app">
+</div>
+<script type="text/babel">
+    class Counter extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {cnt:0};
+        }
+        increment = () => {
+            console.log("indeed here!", "this.state.cnt:", this.state.cnt);
+            this.setState({cnt: this.state.cnt+1});
+        };
+        decrement = () => {
+            this.setState({cnt: this.state.cnt-1});
+        };
+        render(){
+            return(
+                <div>
+                    <h2>{this.state.cnt}</h2>
+                    <button
+                        onClick={() => this.increment()}>
+                        Increment!
+                    </button>
+                    <button
+                        onClick={() => this.decrement()}>
+                        Decrement!
+                    </button>
+                </div>
+            )
+        }
+    }
+
+    class Button extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {};
+        }
+
+        render(){
+            return(
+                <div>
+                    <button
+                        onClick={() => this.props.counter_cb()}
+                    >
+                        Add Counter
+                    </button>
+                </div>
+            )
+        }
+    }
+
+    class Container extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state = {counters: []};
+        }
+
+        counter_cb = () => {
+            const counters = this.state.counters;
+            counters.push(new Counter());
+            this.setState({counters: counters});
+        }
+
+        render(){
+            return(
+                <div>
+                    <Button counter_cb = {this.counter_cb}/>
+                    {
+                        this.state.counters.map((counter, index) => (
+                            <div>{counter.render()}</div>
+                        ))
+                    }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Container />, document.getElementById("app"));
+</script>
+</body>
+</html>
