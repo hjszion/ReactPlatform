@@ -14,25 +14,17 @@
     class Counter extends React.Component{
         constructor(props) {
             super(props);
-            this.state = {cnt:0};
         }
-        increment = () => {
-            console.log("indeed here!", "this.state.cnt:", this.state.cnt);
-            this.setState({cnt: this.state.cnt+1});
-        };
-        decrement = () => {
-            this.setState({cnt: this.state.cnt-1});
-        };
         render(){
             return(
-                <div>
-                    <h2>{this.state.cnt}</h2>
+                <div key={this.props.index}>
+                    <h2>{this.props.cnt}</h2>
                     <button
-                        onClick={() => this.increment()}>
+                        onClick={() => this.props.increment(this.props.index)}>
                         Increment!
                     </button>
                     <button
-                        onClick={() => this.decrement()}>
+                        onClick={() => this.props.decrement(this.props.index)}>
                         Decrement!
                     </button>
                 </div>
@@ -62,13 +54,33 @@
     class Container extends React.Component{
         constructor(props) {
             super(props);
-            this.state = {counters: []};
+            this.state = {
+                counters: [],
+            };
         }
 
         counter_cb = () => {
-            const counters = this.state.counters;
-            counters.push(new Counter());
-            this.setState({counters: counters});
+            const cur_counters = this.state.counters.slice();
+            cur_counters.push(0);
+            this.setState({
+                counters: cur_counters,
+            })
+        }
+
+        increment = (i) => {
+            const cur_counters = this.state.counters.slice();
+            cur_counters[i] += 1;
+            this.setState({
+                counters: cur_counters,
+            });
+        }
+
+        decrement = (i) => {
+            const cur_counters = this.state.counters.slice();
+            cur_counters[i] -= 1;
+            this.setState({
+                counters: cur_counters,
+            });
         }
 
         render(){
@@ -76,8 +88,13 @@
                 <div>
                     <Button counter_cb = {this.counter_cb}/>
                     {
-                        this.state.counters.map((counter, index) => (
-                            <div>{counter.render()}</div>
+                        this.state.counters.map((number, index) => (
+                            <Counter
+                                index = {index}
+                                cnt={number}
+                                increment={(i) => this.increment(i)}
+                                decrement={(i) => this.decrement(i)}
+                            />
                         ))
                     }
                 </div>
