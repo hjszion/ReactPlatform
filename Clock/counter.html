@@ -51,6 +51,41 @@
         }
     }
 
+    class Bundle extends React.Component{
+        constructor(props){
+           super(props);
+           this.state = ({
+               name:"someRandomName",
+           });
+        }
+
+        changeName = (newName) => {
+            this.setState({
+                name:newName
+            });
+        }
+
+        changeNameFromInput = (event) => {
+            this.setState({
+                name:event.target.value
+            });
+        }
+
+        render(){
+            return(
+                <div>
+                    <br />
+                    <button onClick={() => {this.changeName("AwesomeName-001")}}>Change state using On Function!</button>
+                    <button onClick={this.changeName.bind(this, "AwesomeName-002")}>Change state using binding!</button>
+                    <br />
+                    <input type="text" onChange={this.changeNameFromInput} />
+                    <br />
+                    <div>{this.state.name}</div>
+                </div>
+            )
+        }
+    }
+
     class Container extends React.Component{
         constructor(props) {
             super(props);
@@ -97,6 +132,7 @@
                             />
                         ))
                     }
+                    <Bundle/>
                 </div>
             )
         }
