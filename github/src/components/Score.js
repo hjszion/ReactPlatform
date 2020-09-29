@@ -6,15 +6,18 @@ class Score extends React.Component{
     }
 
     render() {
+        const msg = () => {
+            if(this.props.error !== null){
+                return <h2>{this.props.error}</h2>
+            }else if(this.props.score !== null){
+                return <h2>Your Score is: {this.props.score}!</h2>
+            }else{
+                return <h2></h2>
+            }
+        }
         return(
             <div>
-                {() => {
-                    if(this.props.score == null){
-                        return <div>{this.props.error}</div>
-                    }else{
-                        return <div>{this.props.score}</div>
-                    }
-                }}
+                {msg()}
             </div>
         )
     }

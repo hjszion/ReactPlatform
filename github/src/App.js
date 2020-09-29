@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import Axios from 'axios';
 
 import Form from './components/Form';
 import Score from './components/Score';
@@ -12,7 +11,7 @@ class App extends React.Component{
     this.state = {
       user:null,
       score:null,
-      error:'The user not exit!'
+      error:null
     }
   }
   // https://api.github.com/users/zionhjs/repos   -> get all repos
@@ -29,6 +28,7 @@ class App extends React.Component{
     var score = 0;
     var repo_length = 0;
     var follower_length = 0;
+    var error = null;
 
     const get_repo_len = () => {
       return axios({
@@ -39,8 +39,8 @@ class App extends React.Component{
             repo_length = Math.max(response.data.length, 1);
           })
           .catch(function(error){
-              this.setState({score:null});
               alert("the user_name is invalid");
+              error = 'The user not exit!';
               console.log(error);
           });
     }
@@ -54,8 +54,8 @@ class App extends React.Component{
             follower_length = Math.max(response.data.length, 1);
           })
           .catch(function(error){
-              this.setState({score:null});
               alert("the user_name is invalid");
+              error = 'The user not exit!';
               console.log(error);
           });
     }
@@ -64,8 +64,11 @@ class App extends React.Component{
         .then(() => {
               score = Math.max(score, repo_length*follower_length);
               // set state
+              if(error != null){
+                  this.setState({error:error});
+              }
               if(score != 0){
-                this.setState({score:score});
+                this.setState({score:score, error:null});
               };
             }
         )
