@@ -1,5 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
+import {
+    BrowserRouter,
+    Route,
+    Link
+} from 'react-router-dom'
+
 import './App.css';
 import JavaScript from "./components/JavaScript";
 import Haskell from "./components/Haskell";
@@ -24,27 +30,40 @@ class App extends React.Component{
     }
 
     render(){
-        const current = () => {
-            if(this.state.current == "This is JavaScript!"){
-                return <JavaScript />
-            }else if(this.state.current == "This is Haskell!"){
-                return <Haskell />
-            }else if(this.state.current == "This is CoffeeScript!"){
-                return <CoffeeScript />
-            }
-        }
+        // const current = () => {
+        //     if(this.state.current == "This is JavaScript!"){
+        //         return <JavaScript />
+        //     }else if(this.state.current == "This is Haskell!"){
+        //         return <Haskell />
+        //     }else if(this.state.current == "This is CoffeeScript!"){
+        //         return <CoffeeScript />
+        //     }
+        // }
 
-
+        // return (
+        //     <div className="App">
+        //         <a href="/javascript" name="js" onClick = {this.handleClick}>JavaScript</a>
+        //         <br />
+        //         <a href="/haskell" name="hk" onClick = {this.handleClick}>HasKell</a>
+        //         <br />
+        //         <a href="/coffeescript" name="cs" onClick = {this.handleClick}>CoffeeScript</a>
+        //         <br />
+        //         {current()}
+        //     </div>
+        // );
         return (
-            <div className="App">
-                <a href="/javascript" name="js" onClick = {this.handleClick}>JavaScript</a>
-                <br />
-                <a href="/haskell" name="hk" onClick = {this.handleClick}>HasKell</a>
-                <br />
-                <a href="/coffeescript" name="cs" onClick = {this.handleClick}>CoffeeScript</a>
-                <br />
-                {current()}
-            </div>
+            <BrowserRouter>
+                <div>
+                    <ul>
+                        <li><Link to="/javascript">JavaScript</Link></li>
+                        <li><Link to="/haskell">Haskell</Link></li>
+                        <li><Link to="/coffeescript">CoffeScript</Link></li>
+                    </ul>
+                    <Route path="/javascript" component={JavaScript} />
+                    <Route path="/haskell" component={Haskell} />
+                    <Route path="/coffeescript" component={CoffeeScript} />
+                </div>
+            </BrowserRouter>
         );
     }
 }
