@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="TicTacToe" />
     <orderEntry type="module" module-name="shinto-coin" />
+    <orderEntry type="module" module-name="react-redux-demo" />
   </component>
 </module>

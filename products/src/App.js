@@ -96,7 +96,7 @@ class App extends React.Component{
               }} />
               <Route exact path="/products/edit/:id" component={props => {
                   console.log("props.match:", this.props.match);
-                  return <WrapEdit id={this.props.match.params.id} editProduct={this.editProduct} delete={this.deleteProduct} />
+                  return <WrapEdit editProduct={this.editProduct} delete={this.deleteProduct} />
               }} />
             </Switch>
         </div>

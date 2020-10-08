@@ -29,3 +29,4 @@ class Buy extends React.Component{
 }
 
 export default Buy;
+

@@ -17,7 +17,7 @@ class Edit extends React.Component{
                 <h1>{this.props.data.title}</h1>
                 <p>{this.props.data.description}</p>
                 <br />
-                <form onSubmit={() => this.props.editProduct(this.props.id, this.state.name, this.state.price, this.state.url)}>
+                <form onSubmit={() => this.props.editProduct(this.props.match.params.id, this.state.name, this.state.price, this.state.url)}>
                     <label>
                         Product Name:
                         <input name="name" type="text" onChange={this.handleChange}></input>

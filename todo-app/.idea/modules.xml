@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../TicTacToe/.idea/TicTacToe.iml" filepath="$PROJECT_DIR$/../TicTacToe/.idea/TicTacToe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-redux-demo/.idea/react-redux-demo.iml" filepath="$PROJECT_DIR$/../react-redux-demo/.idea/react-redux-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/../shinto-coin/.idea/shinto-coin.iml" filepath="$PROJECT_DIR$/../shinto-coin/.idea/shinto-coin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/todo-app.iml" filepath="$PROJECT_DIR$/.idea/todo-app.iml" />
     </modules>
